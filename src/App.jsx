@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import Timer from './components/timer/timer';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  onTick() {
+    console.log('Tick');
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,7 +16,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <Timer seconds={10 * 60} onTick={this.onTick} />
         </p>
       </div>
     );
