@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Timer from './components/timer/timer';
+import formatTime from './components/utils/format_time';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  onTick() {
-    console.log('Tick');
+  onTick(seconds) {
+    document.title = '[' + formatTime(seconds) + '] Pomodoro';
   }
 
   render() {
