@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import formatTime from './../utils/format_time';
 
 class Timer extends Component {
   constructor(props) {
     super(props);
     this.handleStartClick = this.handleStartClick.bind(this);
-    this.state= { seconds: this.props.seconds };
+    this.tick = this.tick.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.state = { seconds: this.props.seconds };
     this.timer = 0;
   }
 
@@ -14,6 +17,7 @@ class Timer extends Component {
     let { seconds } = this.state;
     seconds -= 1;
     onTick(seconds);
+    this.setState({ seconds });
   }
 
   stopTimer() {
@@ -26,7 +30,12 @@ class Timer extends Component {
 
   render() {
     const { seconds } = this.state;
-    return (<div>{ seconds }</div>);
+    const formattedTime = formatTime(seconds);
+    return (
+      <div><h2>{ formattedTime }</h2>
+        <button onClick={this.handleStartClick}>Start</button>
+        <button onClick={this.stopTimer}>Pause</button>
+      </div>);
   }
 }
 
