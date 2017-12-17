@@ -22,10 +22,13 @@ class Timer extends Component {
 
   stopTimer() {
     clearInterval(this.timer);
+    this.timer = 0;
   }
 
   handleStartClick() {
-    this.timer = setInterval(this.tick, 1000);
+    if (this.timer === 0) {
+      this.timer = setInterval(this.tick, 1000);
+    }
   }
 
   render() {

@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
   onTick(seconds) {
-    document.title = '[' + formatTime(seconds) + '] Pomodoro';
+    document.title = `[${  formatTime(seconds)  }] Pomodoro`;
   }
 
   render() {
@@ -16,9 +16,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Pomodoro Timer </h1>
         </header>
-        <p className="App-intro">
+        <div className="App-intro">
           <Timer seconds={10 * 60} onTick={this.onTick} />
-        </p>
+        </div>
       </div>
     );
   }
