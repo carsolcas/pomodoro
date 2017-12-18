@@ -13,11 +13,16 @@ class Timer extends Component {
   }
 
   tick() {
-    const { onTick } = this.props;
+    const { onTick, onTimerOver } = this.props;
     let { seconds } = this.state;
-    seconds -= 1;
-    onTick(seconds);
+    if (seconds >= 0) seconds -= 1;
     this.setState({ seconds });
+
+    onTick(seconds);
+    if (seconds === 0) {
+      this.stopTimer();
+      onTimerOver();
+    }
   }
 
   stopTimer() {
@@ -45,6 +50,7 @@ class Timer extends Component {
 Timer.propTypes = {
   seconds: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
+  onTimerOver: PropTypes.func.isRequired,
 };
 
 export default Timer;
