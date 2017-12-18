@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import formatTime from './../utils/format_time';
 
 class Timer extends Component {
@@ -41,8 +42,8 @@ class Timer extends Component {
     const formattedTime = formatTime(seconds);
     return (
       <div><h2>{ formattedTime }</h2>
-        <button onClick={this.handleStartClick}>Start</button>
-        <button onClick={this.stopTimer}>Pause</button>
+        <Button bsStyle="success" onClick={this.handleStartClick}>Start</Button>
+        <Button bsStyle="warning" onClick={this.stopTimer}>Pause</Button>
       </div>);
   }
 }
