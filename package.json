@@ -5,10 +5,13 @@
   "homepage": "https://carsolcas.github.io/pomodoro",
   "dependencies": {
     "gh-pages": "^1.1.0",
+    "material-ui": "^1.0.0-beta.24",
+    "material-ui-icons": "^1.0.0-beta.17",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "typeface-roboto": "0.0.45"
   },
   "scripts": {
     "predeploy": "npm run build",
