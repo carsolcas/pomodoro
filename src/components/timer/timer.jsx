@@ -12,8 +12,9 @@ class Timer extends Component {
     this.handleStartClick = this.handleStartClick.bind(this);
     this.tick = this.tick.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
-    this.state = { seconds: this.props.seconds };
-    this.timer = 0;
+    this.state = {
+      seconds: this.props.seconds,
+      timer: 0 };
   }
 
   tick() {
@@ -30,13 +31,20 @@ class Timer extends Component {
   }
 
   stopTimer() {
-    clearInterval(this.timer);
-    this.timer = 0;
+    const { timer } = this.state;
+    clearInterval(timer);
+    this.setState({ timer: 0 });
+  }
+
+  isRunning() {
+    return this.state.timer !== 0;
   }
 
   handleStartClick() {
-    if (this.timer === 0) {
-      this.timer = setInterval(this.tick, 1000);
+    let { timer } = this.state;
+    if (timer === 0) {
+      timer = setInterval(this.tick, 1000);
+      this.setState({ timer });
     }
   }
 
@@ -57,7 +65,11 @@ class Timer extends Component {
           />
         </div>
 
-        <ButtonsWidget onStartClick={this.handleStartClick} onPauseClick={this.stopTimer} />
+        <ButtonsWidget
+          isRuning={this.isRunning()}
+          onStartClick={this.handleStartClick}
+          onPauseClick={this.stopTimer}
+        />
       </div>);
   }
 }

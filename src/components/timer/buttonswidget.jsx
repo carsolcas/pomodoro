@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 
 import PlayArrow from 'material-ui-icons/PlayArrow';
 import Pause from 'material-ui-icons/Pause';
+import Replay from 'material-ui-icons/Replay';
 
 const styles = theme => ({
   button: {
@@ -13,17 +14,21 @@ const styles = theme => ({
 });
 
 function ActionButtons(props) {
-  const { classes, onPauseClick, onStartClick } = props;
+  const { classes, onPauseClick, onStartClick, isRuning } = props;
+  const actionIcon = (isRuning) ? (<Pause />) : (<PlayArrow />);
+  const eventClick = (isRuning) ? onPauseClick : onStartClick;
+  const buttonColor = (isRuning) ? 'primary' : 'accent';
+
   return (
     <div>
       <Button
         fab
-        color="accent"
-        aria-label="start"
+        color={buttonColor}
+        aria-label="stop"
         className={classes.button}
-        onClick={onStartClick}
+        onClick={eventClick}
       >
-        <PlayArrow />
+        {actionIcon}
       </Button>
 
       <Button
@@ -33,7 +38,7 @@ function ActionButtons(props) {
         className={classes.button}
         onClick={onPauseClick}
       >
-        <Pause />
+        <Replay />
       </Button>
     </div>
   );
@@ -43,6 +48,7 @@ ActionButtons.propTypes = {
   classes: PropTypes.objectOf(PropTypes.String).isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onStartClick: PropTypes.func.isRequired,
+  isRuning: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(ActionButtons);
