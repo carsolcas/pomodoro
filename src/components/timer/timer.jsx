@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { CircularProgress } from 'material-ui/Progress';
-import Button from 'material-ui/Button';
-import PlayArrow from 'material-ui-icons/PlayArrow';
-import Pause from 'material-ui-icons/Pause';
 
 import formatTime from './../utils/format_time';
+import ButtonsWidget from './buttonswidget';
 
 class Timer extends Component {
   constructor(props) {
@@ -59,13 +57,7 @@ class Timer extends Component {
           />
         </div>
 
-
-        <Button fab color="accent" aria-label="start" onClick={this.handleStartClick}>
-          <PlayArrow />
-        </Button>
-        <Button fab color="primary" aria-label="stop" onClick={this.stopTimer} >
-          <Pause />
-        </Button>
+        <ButtonsWidget onStartClick={this.handleStartClick} onPauseClick={this.stopTimer} />
       </div>);
   }
 }
