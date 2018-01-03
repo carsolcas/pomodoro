@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { CircularProgress } from 'material-ui/Progress';
-
-import formatTime from './../utils/format_time';
 import ButtonsWidget from './buttonswidget';
+import TimerWidget from './timerwidget';
 
 class Timer extends Component {
   constructor(props) {
@@ -14,7 +12,8 @@ class Timer extends Component {
     this.stopTimer = this.stopTimer.bind(this);
     this.state = {
       seconds: this.props.seconds,
-      timer: 0 };
+      timer: 0 
+};
   }
 
   tick() {
@@ -51,19 +50,9 @@ class Timer extends Component {
   render() {
     const { seconds } = this.state;
     const maxSeconds = this.props.seconds;
-    const progressValue = Math.abs(seconds - maxSeconds);
-    const formattedTime = formatTime(seconds);
     return (
-      <div><h2>{ formattedTime }</h2>
-        <div>
-          <CircularProgress
-            size={170}
-            mode="determinate"
-            value={progressValue}
-            min={0}
-            max={maxSeconds}
-          />
-        </div>
+      <div>
+        <TimerWidget seconds={seconds} maxSeconds={maxSeconds} />
 
         <ButtonsWidget
           isRuning={this.isRunning()}
