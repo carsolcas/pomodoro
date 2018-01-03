@@ -14,7 +14,7 @@ const styles = theme => ({
 });
 
 function ActionButtons(props) {
-  const { classes, onPauseClick, onStartClick, isRuning } = props;
+  const { classes, onPauseClick, onStartClick, onRestartClick, isRuning } = props;
   const actionIcon = (isRuning) ? (<Pause />) : (<PlayArrow />);
   const eventClick = (isRuning) ? onPauseClick : onStartClick;
   const buttonColor = (isRuning) ? 'primary' : 'accent';
@@ -36,7 +36,7 @@ function ActionButtons(props) {
         color="primary"
         aria-label="stop"
         className={classes.button}
-        onClick={onPauseClick}
+        onClick={onRestartClick}
       >
         <Replay />
       </Button>
@@ -48,6 +48,7 @@ ActionButtons.propTypes = {
   classes: PropTypes.objectOf(PropTypes.String).isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onStartClick: PropTypes.func.isRequired,
+  onRestartClick: PropTypes.func.isRequired,
   isRuning: PropTypes.bool.isRequired,
 };
 

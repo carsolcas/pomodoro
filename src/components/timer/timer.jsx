@@ -8,12 +8,13 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleRestartClick = this.handleRestartClick.bind(this);
     this.tick = this.tick.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.state = {
       seconds: this.props.seconds,
-      timer: 0 
-};
+      timer: 0,
+    };
   }
 
   tick() {
@@ -47,6 +48,11 @@ class Timer extends Component {
     }
   }
 
+  handleRestartClick() {
+    const { seconds } = this.props;
+    this.setState({ seconds });
+  }
+
   render() {
     const { seconds } = this.state;
     const maxSeconds = this.props.seconds;
@@ -58,6 +64,7 @@ class Timer extends Component {
           isRuning={this.isRunning()}
           onStartClick={this.handleStartClick}
           onPauseClick={this.stopTimer}
+          onRestartClick={this.handleRestartClick}
         />
       </div>);
   }
