@@ -42,7 +42,8 @@ class Timer extends Component {
 
   handleStartClick() {
     let { timer } = this.state;
-    if (timer === 0) {
+    const { seconds } = this.state;
+    if (timer === 0 && seconds > 0) {
       timer = setInterval(this.tick, 1000);
       this.setState({ timer });
     }
