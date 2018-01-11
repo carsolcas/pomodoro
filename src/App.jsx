@@ -14,6 +14,7 @@ class App extends Component {
   }
 
   render() {
+    const title = 'Pomodoro #1';
     return (
       <div className="App">
         <header className="App-header">
@@ -21,7 +22,7 @@ class App extends Component {
           <h1 className="App-title">Pomodoro Timer </h1>
         </header>
         <div className="App-intro">
-          <Timer seconds={25 * 60} onTick={this.onTick} onTimerOver={this.onTimerOver} />
+          <Timer seconds={25 * 60} onTick={this.onTick} onTimerOver={this.onTimerOver} title={title} />
         </div>
       </div>
     );

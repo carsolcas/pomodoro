@@ -59,6 +59,7 @@ class Timer extends Component {
     const maxSeconds = this.props.seconds;
     return (
       <div>
+        <h1>{this.props.title}</h1>
         <TimerWidget seconds={seconds} maxSeconds={maxSeconds} />
 
         <ButtonsWidget
@@ -75,6 +76,11 @@ Timer.propTypes = {
   seconds: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
   onTimerOver: PropTypes.func.isRequired,
+  title: PropTypes.string,
+};
+
+Timer.defaultProps = {
+  title: '',
 };
 
 export default Timer;
