@@ -4,17 +4,55 @@ import formatTime from './components/utils/format_time';
 import logo from './logo.svg';
 import './App.css';
 
+const POMODORO = 'POMODORO';
+const SHORT_BREAK = 'SHORT_BREAK';
+const LONG_BREAK = 'LONG_BREAK';
+
+const TIMES = {
+  POMODORO: 25 * 60,
+  SHORT_BREAK: 5 * 60,
+  LONG_BREAK: 15 * 60,
+};
+
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.onTimerOver = this.onTimerOver.bind(this);
+
+    this.state = {
+      pomodoros: 0,
+      isPomodoro: true,
+    };
+  }
+
   onTick(seconds) {
     document.title = `[${formatTime(seconds)}] Pomodoro`;
   }
 
   onTimerOver() {
-    console.log('Timer is over');
+    let {isPomodoro, pomodoros } = this.state;
+    if (isPomodoro) pomodoros += 1;
+    isPomodoro = !isPomodoro;
+    this.setState({ isPomodoro, pomodoros });
   }
 
   render() {
-    const title = 'Pomodoro #1';
+    const { isPomodoro, pomodoros } = this.state;
+    let title;
+    let type;
+    if (isPomodoro) {
+      title = `Pomodoro #${ pomodoros + 1 }`;
+      type = POMODORO;
+    } else if (pomodoros % 4 === 0) {
+      title = 'Long Break';
+      type = LONG_BREAK;
+    } else {
+      title = 'Short Break';
+      type = SHORT_BREAK;
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -22,7 +60,13 @@ class App extends Component {
           <h1 className="App-title">Pomodoro Timer </h1>
         </header>
         <div className="App-intro">
-          <Timer seconds={25 * 60} onTick={this.onTick} onTimerOver={this.onTimerOver} title={title} />
+          <Timer
+            seconds={TIMES[type]}
+            onTick={this.onTick}
+            onTimerOver={this.onTimerOver}
+            title={title}
+            type={type}
+          />
         </div>
       </div>
     );

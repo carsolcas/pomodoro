@@ -7,14 +7,22 @@ import TimerWidget from './timerwidget';
 class Timer extends Component {
   constructor(props) {
     super(props);
+
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleRestartClick = this.handleRestartClick.bind(this);
     this.tick = this.tick.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+
     this.state = {
       seconds: this.props.seconds,
       timer: 0,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.type !== this.props.type) {
+      this.setState({ seconds: nextProps.seconds });
+    }
   }
 
   tick() {
@@ -54,9 +62,11 @@ class Timer extends Component {
     this.setState({ seconds });
   }
 
+
   render() {
     const { seconds } = this.state;
     const maxSeconds = this.props.seconds;
+
     return (
       <div>
         <h1>{this.props.title}</h1>
@@ -73,6 +83,7 @@ class Timer extends Component {
 }
 
 Timer.propTypes = {
+  type: PropTypes.number.isRequired,
   seconds: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
   onTimerOver: PropTypes.func.isRequired,
