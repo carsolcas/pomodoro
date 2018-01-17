@@ -1,10 +1,15 @@
-.progressContainer{
+.progressContainer, progress-widget{
     position: relative;
 }
-
+.pw-background{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -3px;
+}
 .time{
     position: absolute;
     left: 0;
     right: 0;
-    top: 3rem;
+    top: 3.5rem;
 }
