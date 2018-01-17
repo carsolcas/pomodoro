@@ -9,8 +9,7 @@ function TimerWidget(props) {
   const { seconds, maxSeconds } = props;
   const progressValue = Math.abs(seconds - maxSeconds);
   const formattedTime = formatTime(seconds);
-  const size = 170;
-
+  const size = 200;
 
   return (
     <div className="progressContainer">
@@ -18,8 +17,9 @@ function TimerWidget(props) {
       <div className="progress-widget">
         <div className="pw-background">
           <CircularProgress
+            thickness={4.5}
             color="accent"
-            size={size + 30}
+            size={size}
             mode="determinate"
             value={100}
             min={0}

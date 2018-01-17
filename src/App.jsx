@@ -9,9 +9,9 @@ const SHORT_BREAK = 'SHORT_BREAK';
 const LONG_BREAK = 'LONG_BREAK';
 
 const TIMES = {
-  POMODORO: 25 * 60,
-  SHORT_BREAK: 5 * 60,
-  LONG_BREAK: 15 * 60,
+  POMODORO: 25,
+  SHORT_BREAK: 5,
+  LONG_BREAK: 15,
 };
 
 class App extends Component {
