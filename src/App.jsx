@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import Timer from './components/timer/timer';
 import formatTime from './components/utils/format_time';
-import logo from './logo.svg';
+import logo from './tomato-logo.svg';
 import './App.css';
 
 const POMODORO = 'POMODORO';
 const SHORT_BREAK = 'SHORT_BREAK';
 const LONG_BREAK = 'LONG_BREAK';
 
+const CSECONDS = (process.env.NODE_ENV === 'production') ? 60 : 1;
+
 const TIMES = {
-  POMODORO: 25,
-  SHORT_BREAK: 5,
-  LONG_BREAK: 15,
+  POMODORO: 25 * CSECONDS,
+  SHORT_BREAK: 5 * CSECONDS,
+  LONG_BREAK: 15 * CSECONDS,
 };
 
 class App extends Component {
