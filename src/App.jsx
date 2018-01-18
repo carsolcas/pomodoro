@@ -8,12 +8,12 @@ const POMODORO = 'POMODORO';
 const SHORT_BREAK = 'SHORT_BREAK';
 const LONG_BREAK = 'LONG_BREAK';
 
-const CSECONDS = (process.env.NODE_ENV === 'production') ? 60 : 1;
+const SECONDS_MINUTE = (process.env.NODE_ENV === 'production') ? 60 : 1;
 
 const TIMES = {
-  POMODORO: 25 * CSECONDS,
-  SHORT_BREAK: 5 * CSECONDS,
-  LONG_BREAK: 15 * CSECONDS,
+  POMODORO: 25 * SECONDS_MINUTE,
+  SHORT_BREAK: 5 * SECONDS_MINUTE,
+  LONG_BREAK: 15 * SECONDS_MINUTE,
 };
 
 class App extends Component {
