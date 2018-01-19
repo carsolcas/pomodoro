@@ -22,6 +22,7 @@ class App extends Component {
     super(props);
 
     this.onTimerOver = this.onTimerOver.bind(this);
+    this.onSkip = this.onSkip.bind(this);
 
     this.state = {
       pomodoros: 0,
@@ -33,8 +34,12 @@ class App extends Component {
     document.title = `[${formatTime(seconds)}] Pomodoro`;
   }
 
+  onSkip() {
+    this.onTimerOver();
+  }
+
   onTimerOver() {
-    let {isPomodoro, pomodoros } = this.state;
+    let { isPomodoro, pomodoros } = this.state;
     if (isPomodoro) pomodoros += 1;
     isPomodoro = !isPomodoro;
     this.setState({ isPomodoro, pomodoros });
@@ -45,7 +50,7 @@ class App extends Component {
     let title;
     let type;
     if (isPomodoro) {
-      title = `Pomodoro #${ pomodoros + 1 }`;
+      title = `Pomodoro #${pomodoros + 1}`;
       type = POMODORO;
     } else if (pomodoros % 4 === 0) {
       title = 'Long Break';
@@ -66,6 +71,7 @@ class App extends Component {
             seconds={TIMES[type]}
             onTick={this.onTick}
             onTimerOver={this.onTimerOver}
+            onSkip={this.onSkip}
             title={title}
             type={type}
           />

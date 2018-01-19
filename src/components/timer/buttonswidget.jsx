@@ -6,6 +6,8 @@ import Button from 'material-ui/Button';
 import PlayArrow from 'material-ui-icons/PlayArrow';
 import Pause from 'material-ui-icons/Pause';
 import Replay from 'material-ui-icons/Replay';
+import Skip from 'material-ui-icons/SkipNext';
+
 
 const styles = theme => ({
   button: {
@@ -14,7 +16,10 @@ const styles = theme => ({
 });
 
 function ActionButtons(props) {
-  const { classes, onPauseClick, onStartClick, onRestartClick, isRuning } = props;
+  const {
+    classes, onPauseClick, onStartClick, onRestartClick, isRuning, onSkipClick,
+  } = props;
+
   const actionIcon = (isRuning) ? (<Pause />) : (<PlayArrow />);
   const eventClick = (isRuning) ? onPauseClick : onStartClick;
   const buttonColor = (isRuning) ? 'primary' : 'accent';
@@ -40,6 +45,16 @@ function ActionButtons(props) {
       >
         <Replay />
       </Button>
+
+      <Button
+        fab
+        color="primary"
+        aria-label="stop"
+        className={classes.button}
+        onClick={onSkipClick}
+      >
+        <Skip />
+      </Button>
     </div>
   );
 }
@@ -49,6 +64,7 @@ ActionButtons.propTypes = {
   onPauseClick: PropTypes.func.isRequired,
   onStartClick: PropTypes.func.isRequired,
   onRestartClick: PropTypes.func.isRequired,
+  onSkipClick: PropTypes.func.isRequired,
   isRuning: PropTypes.bool.isRequired,
 };
 

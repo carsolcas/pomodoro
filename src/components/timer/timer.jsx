@@ -10,6 +10,7 @@ class Timer extends Component {
 
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleRestartClick = this.handleRestartClick.bind(this);
+    this.handleSkipClick = this.handleSkipClick.bind(this);
     this.tick = this.tick.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
 
@@ -62,6 +63,10 @@ class Timer extends Component {
     this.setState({ seconds });
   }
 
+  handleSkipClick() {
+    const { onSkip } = this.props;
+    onSkip();
+  }
 
   render() {
     const { seconds } = this.state;
@@ -87,6 +92,7 @@ Timer.propTypes = {
   seconds: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
   onTimerOver: PropTypes.func.isRequired,
+  onSkip: PropTypes.func.isRequired,
   title: PropTypes.string,
 };
 
