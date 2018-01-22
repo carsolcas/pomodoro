@@ -60,7 +60,7 @@ function ActionButtons(props) {
 }
 
 ActionButtons.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.String).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onStartClick: PropTypes.func.isRequired,
   onRestartClick: PropTypes.func.isRequired,

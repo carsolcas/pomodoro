@@ -82,13 +82,14 @@ class Timer extends Component {
           onStartClick={this.handleStartClick}
           onPauseClick={this.stopTimer}
           onRestartClick={this.handleRestartClick}
+          onSkipClick={this.handleSkipClick}
         />
       </div>);
   }
 }
 
 Timer.propTypes = {
-  type: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
   seconds: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
   onTimerOver: PropTypes.func.isRequired,
