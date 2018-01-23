@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Timer from './components/timer/timer';
+import LogList from './components/list/list';
 import formatTime from './components/utils/format_time';
 import logo from './tomato-logo.svg';
 import './App.css';
@@ -15,6 +16,8 @@ const TIMES = {
   SHORT_BREAK: 5 * SECONDS_MINUTE,
   LONG_BREAK: 15 * SECONDS_MINUTE,
 };
+
+const log = [{title: 'Pomodoro 1', completed: true}];
 
 class App extends Component {
 
@@ -75,6 +78,9 @@ class App extends Component {
             title={title}
             type={type}
           />
+        </div>
+        <div>
+          <LogList items={log} />
         </div>
       </div>
     );
