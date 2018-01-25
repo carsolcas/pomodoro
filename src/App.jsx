@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grid from 'material-ui/Grid';
 import Timer from './components/timer/timer';
 import LogList from './components/list/list';
 import formatTime from './components/utils/format_time';
@@ -88,7 +89,14 @@ class App extends Component {
           />
         </div>
         <div>
-          <LogList items={log} />
+          <Grid container spacing={24}>
+            <Grid item xs={12} sm={6}>
+              <LogList items={log} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <LogList items={log} />
+            </Grid>
+          </Grid>
         </div>
       </div>
     );
