@@ -17,8 +17,6 @@ const TIMES = {
   LONG_BREAK: 15 * SECONDS_MINUTE,
 };
 
-const log = [{title: 'Pomodoro 1', completed: true}];
-
 class App extends Component {
 
   constructor(props) {
@@ -30,6 +28,7 @@ class App extends Component {
     this.state = {
       pomodoros: 0,
       isPomodoro: true,
+      log: [],
     };
   }
 
@@ -37,19 +36,28 @@ class App extends Component {
     document.title = `[${formatTime(seconds)}] Pomodoro`;
   }
 
+  processEndPeriod(isCompleted){
+    let { isPomodoro, pomodoros, log } = this.state;
+    if (isPomodoro){
+      pomodoros += 1;
+      log.push({title: 'Pomodoro #' + pomodoros, completed: isCompleted});
+    }
+    isPomodoro = !isPomodoro;
+    this.setState({ isPomodoro, pomodoros, log });
+  }
+
   onSkip() {
-    this.onTimerOver();
+    const isCompleted = false;
+    this.processEndPeriod(isCompleted);
   }
 
   onTimerOver() {
-    let { isPomodoro, pomodoros } = this.state;
-    if (isPomodoro) pomodoros += 1;
-    isPomodoro = !isPomodoro;
-    this.setState({ isPomodoro, pomodoros });
+    const isCompleted = true;
+    this.processEndPeriod(isCompleted);
   }
 
   render() {
-    const { isPomodoro, pomodoros } = this.state;
+    const { isPomodoro, pomodoros, log } = this.state;
     let title;
     let type;
     if (isPomodoro) {
